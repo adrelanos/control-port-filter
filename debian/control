@@ -15,7 +15,7 @@ Standards-Version: 3.9.4
 Package: control-port-filter
 Architecture: all
 Pre-Depends: tor
-Depends: remove-torsocks-ld-preload, netcat-traditional, ucspi-tcp, ${misc:Depends}
+Depends: torsocks-remove-ld-preload, netcat-traditional, ucspi-tcp, ${misc:Depends}
 Description: Filter for Tor control protocol commands
  Filters out Tor control protocol commands that are dangerous for anonymity
  such as GETINFO ADDRESS. Acts as a proxy between the client application and
