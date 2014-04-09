@@ -27,6 +27,20 @@ CONTROL_PORT_FILTER_PROXY=1
 ## Very verbose logging.
 CONTROL_PORT_FILTER_VERBOSE=0
 
+##########################################################
+## CONTROL_PORT_FILTER_LIMIT_GETINFO_NET_LISTENERS_SOCKS #
+##########################################################
+## Enable or disable.
+## 0 disabled.
+## Lie when getting asked
+## GETINFO net/listeners/socks
+## and answer
+## 250-net/listeners/socks="127.0.0.1:9150"
+## Has only effect, when
+## GETINFO net/listeners/socks
+## is listed in CONTROL_PORT_FILTER_WHITELIST (see below).
+CONTROL_PORT_FILTER_LIMIT_GETINFO_NET_LISTENERS_SOCKS=1
+
 ##################################
 ## CONTROL_PORT_FILTER_WHITELIST #
 ##################################

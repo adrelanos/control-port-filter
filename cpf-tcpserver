@@ -208,15 +208,17 @@ while read -r; do
       continue
    fi
 
-   ## Lie when we are asked "GETINFO net/listeners/socks".
-   ## This is documented on Whonix Control Port Filter Proxy Design page,
-   ## search for lie.
-   lie_when="GETINFO net/listeners/socks"
+   if [ "$CONTROL_PORT_FILTER_LIMIT_GETINFO_NET_LISTENERS_SOCKS" = "1" ]; then
+      ## Lie when we are asked "GETINFO net/listeners/socks".
+      ## This is documented on Whonix Control Port Filter Proxy Design page,
+      ## search for lie.
+      lie_when="GETINFO net/listeners/socks"
 
-   if [ "${cleaned_reply,,}" = "${lie_when,,}" ]; then
-      true "Got \"$cleaned_reply\" let us lie and forge the answer to make Tor Button happy."
-      write_back '250-net/listeners/socks="127.0.0.1:9150"'
-      continue
+      if [ "${cleaned_reply,,}" = "${lie_when,,}" ]; then
+         true "Got \"$cleaned_reply\" let us lie and forge the answer to make Tor Button happy."
+         write_back '250-net/listeners/socks="127.0.0.1:9150"'
+         continue
+      fi
    fi
 
    ## `timeout` returns:
