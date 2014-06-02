@@ -17,7 +17,7 @@ Architecture: all
 Pre-Depends: tor
 Depends: anon-shared-helper-scripts, uuid-runtime, netcat-traditional,
  ucspi-tcp, logrotate, ${misc:Depends}
-Description: Filter for Tor control protocol commands
+Description: Whitelisting filter for dangerous Tor control protocol commands
  Filters out Tor control protocol commands that are dangerous for anonymity
  such as GETINFO ADDRESS using a whitelist. Acts as a proxy between the client
  application and Tor.
