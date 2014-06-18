@@ -43,6 +43,9 @@ echo "$ID INFO: Getting connection... cpf_pid: $cpf_pid | LD_PRELOAD: $LD_PRELOA
 kill_after="5s"
 timeout_after="5s"
 
+CONTROL_PORT_FILTER_LIMIT_STRING_LENGTH="true"
+CONTROL_PORT_FILTER_EXCESSIVE_STRING_LENGTH="128"
+
 ## {{{ /etc/controlportfilt.d
 
 if [ -d /etc/controlportfilt.d ]; then
@@ -159,6 +162,14 @@ fi
 while read -r; do
 
    cleaned_reply="$REPLY"
+
+   if [ "$CONTROL_PORT_FILTER_LIMIT_STRING_LENGTH" = "true" ]; then
+      actual_string_length="${#cleaned_reply}"
+      if [ "$actual_string_length" -gt "$CONTROL_PORT_FILTER_EXCESSIVE_STRING_LENGTH" ]; then
+         write_back '510 Excessive string length. ""'
+         continue
+      fi
+   fi
 
    ## strip newlines from input
    cleaned_reply="$(echo "$cleaned_reply" | tr '\r' ' ')"

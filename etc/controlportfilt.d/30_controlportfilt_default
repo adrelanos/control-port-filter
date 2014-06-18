@@ -41,6 +41,22 @@ CONTROL_PORT_FILTER_VERBOSE=0
 ## is listed in CONTROL_PORT_FILTER_WHITELIST (see below).
 CONTROL_PORT_FILTER_LIMIT_GETINFO_NET_LISTENERS_SOCKS=1
 
+##########################################################
+## CONTROL_PORT_FILTER_LIMIT_STRING_LENGTH               #
+##########################################################
+## Enable or disable.
+## false: disabled
+## true: enabled
+CONTROL_PORT_FILTER_LIMIT_STRING_LENGTH="true"
+
+##########################################################
+## CONTROL_PORT_FILTER_EXCESSIVE_STRING_LENGTH           #
+##########################################################
+## If CONTROL_PORT_FILTER_LIMIT_STRING_LENGTH is true.
+## Maximum string length. Commands exceeding this limit
+## are rejected.
+CONTROL_PORT_FILTER_EXCESSIVE_STRING_LENGTH="128"
+
 ##################################
 ## CONTROL_PORT_FILTER_WHITELIST #
 ##################################
