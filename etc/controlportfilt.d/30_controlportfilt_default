@@ -64,6 +64,7 @@ CONTROL_PORT_FILTER_WHITELIST=(
    "AUTHENTICATE"
    "GETINFO net/listeners/socks"
    "GETINFO status/bootstrap-phase"
+   "GETINFO status/circuit-established"
    "SIGNAL NEWNYM"
    "QUIT"
 )
