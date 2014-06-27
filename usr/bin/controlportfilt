@@ -16,6 +16,19 @@ echo "$ID $0 INFO: Starting... pid: "$OWN_PID"" >> "$LOG"
 echo "$OWN_PID" > "/var/run/controlportfilt/own_pid"
 rm --force "/var/run/controlportfilt/error"
 
+ex_func() {
+   /sbin/start-stop-daemon \
+      --stop \
+      --quiet \
+      --pidfile "/var/run/controlportfilt/tcpserver_pid" \
+      --signal TERM \
+      --retry 2
+
+   rm --force "/var/run/controlportfilt/ownrunning"
+   rm --force "/var/run/controlportfilt/tcpserver_pid"
+   rm --force "/var/run/controlportfilt/own_pid"
+}
+
 error_handler() {
    local exit_code="$?"
    local bash_command="$BASH_COMMAND"
@@ -24,17 +37,8 @@ error_handler() {
    fi
    echo "$ID $0 ERROR: exit_code: $exit_code | bash_command: $bash_command" >> "$LOG"
 
-   /sbin/start-stop-daemon \
-      --stop \
-      --quiet \
-      --pidfile "/var/run/controlportfilt/tcpserver_pid" \
-      --signal TERM \
-      --retry 2
-
+   ex_func
    touch "/var/run/controlportfilt/error"
-   rm --force "/var/run/controlportfilt/ownrunning"
-   rm --force "/var/run/controlportfilt/tcpserver_pid"
-   rm --force "/var/run/controlportfilt/own_pid"
    exit 1
 }
 
@@ -42,17 +46,7 @@ trap "error_handler" ERR
 
 trap_sigint() {
    echo "$ID $0 INFO: SIGINT received. Exiting." >> "$LOG"
-
-   /sbin/start-stop-daemon \
-      --stop \
-      --quiet \
-      --pidfile "/var/run/controlportfilt/tcpserver_pid" \
-      --signal TERM \
-      --retry 2
-
-   rm --force "/var/run/controlportfilt/ownrunning"
-   rm --force "/var/run/controlportfilt/tcpserver_pid"
-   rm --force "/var/run/controlportfilt/own_pid"
+   ex_func
    exit 0
 }
 
