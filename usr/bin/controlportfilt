@@ -52,6 +52,14 @@ trap_sigint() {
 
 trap "trap_sigint" SIGINT
 
+trap_sigterm() {
+   echo "$ID $0 INFO: SIGTERM received. Exiting." >> "$LOG"
+   ex_func
+   exit 0
+}
+
+trap "trap_sigterm" SIGTERM
+
 tcpserver \
    -v \
    -1 \
