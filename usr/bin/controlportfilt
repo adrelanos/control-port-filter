@@ -28,7 +28,7 @@ error_handler() {
       --stop \
       --quiet \
       --pidfile "/var/run/controlportfilt/tcpserver_pid" \
-      --signal 2 \
+      --signal TERM \
       --retry 2
 
    touch "/var/run/controlportfilt/error"
@@ -47,7 +47,7 @@ trap_sigint() {
       --stop \
       --quiet \
       --pidfile "/var/run/controlportfilt/tcpserver_pid" \
-      --signal 2 \
+      --signal TERM \
       --retry 2
 
    rm --force "/var/run/controlportfilt/ownrunning"
