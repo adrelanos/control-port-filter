@@ -16,7 +16,7 @@ echo "$ID $0 INFO: Starting... pid: "$OWN_PID"" >> "$LOG"
 echo "$OWN_PID" > "/var/run/controlportfilt/own_pid"
 rm --force "/var/run/controlportfilt/error"
 
-ex_func() {
+ex_funct() {
    /sbin/start-stop-daemon \
       --stop \
       --quiet \
@@ -37,7 +37,7 @@ error_handler() {
    fi
    echo "$ID $0 ERROR: exit_code: $exit_code | bash_command: $bash_command" >> "$LOG"
 
-   ex_func
+   ex_funct
    touch "/var/run/controlportfilt/error"
    exit 1
 }
@@ -46,7 +46,7 @@ trap "error_handler" ERR
 
 trap_sigint() {
    echo "$ID $0 INFO: SIGINT received. Exiting." >> "$LOG"
-   ex_func
+   ex_funct
    exit 0
 }
 
@@ -54,7 +54,7 @@ trap "trap_sigint" SIGINT
 
 trap_sigterm() {
    echo "$ID $0 INFO: SIGTERM received. Exiting." >> "$LOG"
-   ex_func
+   ex_funct
    exit 0
 }
 
