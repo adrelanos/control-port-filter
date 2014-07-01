@@ -159,18 +159,17 @@ Exiting (1)...\
    exit 0
 fi
 
-while read -r; do
-
-   cleaned_reply="$REPLY"
+while read -r line; do
 
    if [ "$CONTROL_PORT_FILTER_LIMIT_STRING_LENGTH" = "true" ]; then
-      actual_string_length="${#cleaned_reply}"
+      actual_string_length="${#line}"
       if [ "$actual_string_length" -gt "$CONTROL_PORT_FILTER_EXCESSIVE_STRING_LENGTH" ]; then
          write_back '510 Excessive string length. ""'
          continue
       fi
    fi
 
+   cleaned_reply="$line"
    ## strip newlines from input
    cleaned_reply="$(echo "$cleaned_reply" | tr '\r' ' ')"
    cleaned_reply="$(echo "$cleaned_reply" | tr '\n' ' ')"
