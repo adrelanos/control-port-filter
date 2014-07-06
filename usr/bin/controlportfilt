@@ -11,7 +11,7 @@ ID="$(uuidgen -r)"
 LOG="/var/log/controlportfilt.log"
 OWN_PID="$$"
 
-echo "$ID $0 INFO: Starting... pid: "$OWN_PID"" >> "$LOG"
+echo "$ID $BASH_SOURCE INFO: Starting... pid: "$OWN_PID"" >> "$LOG"
 
 echo "$OWN_PID" > "/var/run/controlportfilt/own_pid"
 rm --force "/var/run/controlportfilt/error"
@@ -35,7 +35,7 @@ error_handler() {
    if [ "$ID" = "" ] ; then
       ID="No_ID"
    fi
-   echo "$ID $0 ERROR: exit_code: $exit_code | bash_command: $bash_command" >> "$LOG"
+   echo "$ID $BASH_SOURCE ERROR: exit_code: $exit_code | bash_command: $bash_command" >> "$LOG"
 
    ex_funct
    touch "/var/run/controlportfilt/error"
@@ -45,7 +45,7 @@ error_handler() {
 trap "error_handler" ERR
 
 trap_sigint() {
-   echo "$ID $0 INFO: SIGINT received. Exiting." >> "$LOG"
+   echo "$ID $BASH_SOURCE INFO: SIGINT received. Exiting." >> "$LOG"
    ex_funct
    exit 0
 }
@@ -53,7 +53,7 @@ trap_sigint() {
 trap "trap_sigint" SIGINT
 
 trap_sigterm() {
-   echo "$ID $0 INFO: SIGTERM received. Exiting." >> "$LOG"
+   echo "$ID $BASH_SOURCE INFO: SIGTERM received. Exiting." >> "$LOG"
    ex_funct
    exit 0
 }
@@ -71,7 +71,7 @@ tcpserver \
 
 tcpserver_pid="$!"
 
-echo "$ID $0 INFO: Started. | tcpserver_pid: $tcpserver_pid | LD_PRELOAD: $LD_PRELOAD | Waiting for connections..." >> "$LOG"
+echo "$ID $BASH_SOURCE INFO: Started. | tcpserver_pid: $tcpserver_pid | LD_PRELOAD: $LD_PRELOAD | Waiting for connections..." >> "$LOG"
 
 touch "/var/run/controlportfilt/ownrunning"
 
@@ -85,9 +85,9 @@ rm --force "/var/run/controlportfilt/tcpserver_pid"
 rm --force "/var/run/controlportfilt/own_pid"
 
 if [ "$tcpserver_exit_code" = "0" ]; then
-   echo "$ID $0 INFO: End with exit code (0): $tcpserver_exit_code" >> "$LOG"
+   echo "$ID $BASH_SOURCE INFO: End with exit code (0): $tcpserver_exit_code" >> "$LOG"
    exit "0"
 else
-   echo "$ID $0 ERROR: End with exit code (x): $tcpserver_exit_code" >> "$LOG"
+   echo "$ID $BASH_SOURCE ERROR: End with exit code (x): $tcpserver_exit_code" >> "$LOG"
    exit "$tcpserver_exit_code"
 fi
