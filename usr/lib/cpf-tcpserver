@@ -136,8 +136,12 @@ check_tor() {
 write_back() {
    trap error_handler ERR
 
-   printf "${1+"$@"}\r\n"
-   echo "$ID BACK: ${1+"$@"}" >> "$LOG"
+   local temp
+   temp="${1+"$@"}"
+   ## Don't use variables in the printf format string.
+   ## https://github.com/koalaman/shellcheck/wiki/SC2059
+   printf "%s\r\n" "$temp"
+   echo "$ID BACK: $temp" >> "$LOG"
 }
 
 received() {
