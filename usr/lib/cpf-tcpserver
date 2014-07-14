@@ -286,7 +286,7 @@ Breaking (3)...\
    read -r temporary_variable_two cookie _ <<< "$temporary_variable_one"
 
    ## Open Tor control port connection.
-   timeout --kill-after=2s 2s echo "AUTHENTICATE "$cookie"" > "$OUT" &
+   timeout --kill-after=2s 2s echo "AUTHENTICATE $cookie" > "$OUT" &
    wait "$!"
 
    ## Send command.
