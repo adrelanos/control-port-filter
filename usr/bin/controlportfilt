@@ -11,7 +11,7 @@ ID="$(uuidgen -r)"
 LOG="/var/log/controlportfilt.log"
 OWN_PID="$$"
 
-echo "$ID $BASH_SOURCE INFO: Starting... pid: "$OWN_PID"" >> "$LOG"
+echo "$ID $BASH_SOURCE INFO: Starting... pid: $OWN_PID" >> "$LOG"
 
 echo "$OWN_PID" > "/var/run/controlportfilt/own_pid"
 rm --force "/var/run/controlportfilt/error"
