@@ -15,7 +15,7 @@ Standards-Version: 3.9.4
 Package: control-port-filter
 Architecture: all
 Pre-Depends: tor
-Depends: anon-shared-helper-scripts, uuid-runtime, netcat-traditional,
+Depends: anon-shared-helper-scripts, uuid-runtime, netcat-openbsd,
  ucspi-tcp, logrotate, ${misc:Depends}
 Description: Whitelisting filter for dangerous Tor control protocol commands
  Filters out Tor control protocol commands that are dangerous for anonymity
