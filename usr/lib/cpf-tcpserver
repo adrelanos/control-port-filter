@@ -247,6 +247,8 @@ while read -r line; do
    mkfifo "$IN"
    mkfifo "$OUT"
 
+   ## discussion about netcat-traditional vs netcat-openbsd vs tcpcat:
+   ## https://www.whonix.org/forum/index.php/topic,444.0.html
    nc 127.0.0.1 9051 < "$OUT" > "$IN" &
    NC_PID="$!"
 
