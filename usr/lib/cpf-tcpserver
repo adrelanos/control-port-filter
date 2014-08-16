@@ -7,6 +7,9 @@
 set -x
 set -o pipefail
 
+## Do not use echos for user or debug output,
+## because those are send back to the client, which gets confused.
+
 LOG="/var/log/controlportfilt.log"
 
 error_handler() {
@@ -31,8 +34,16 @@ trap_sigint() {
 
 trap "trap_sigint" SIGINT
 
-## Do not use echos for user or debug output,
-## because those are send back to the client, which gets confused.
+kill_nc_pid() {
+   trap error_handler ERR
+   local ps_p_exit_code
+   ps_p_exit_code="0"
+   ps -p "$NC_PID" >/dev/null 2>/dev/null || { ps_p_exit_code="$?" ; true; };
+   echo "$ID debug: ps_p_exit_code: $ps_p_exit_code" >> "$LOG"
+   if [ "$ps_p_exit_code" = "0" ]; then
+      kill -sigterm "$NC_PID" >> "$LOG" 2>&1 || true
+   fi
+}
 
 ID="$(uuidgen -r)"
 
@@ -40,8 +51,12 @@ cpf_pid="$$"
 
 echo "$ID INFO: Getting connection... cpf_pid: $cpf_pid | LD_PRELOAD: $LD_PRELOAD" >> "$LOG"
 
-kill_after="5s"
-timeout_after="5s"
+kill_after="2s"
+timeout_after="2s"
+
+temp_directory="$(mktemp --directory)"
+IN="$temp_directory/in_${ID}"
+OUT="$temp_directory/out_${ID}"
 
 CONTROL_PORT_FILTER_LIMIT_STRING_LENGTH="true"
 CONTROL_PORT_FILTER_EXCESSIVE_STRING_LENGTH="128"
@@ -103,6 +118,13 @@ for element in "${CONTROL_PORT_FILTER_LOWERCASE_WHITELIST[@]}"; do
 done
 
 ## }}}
+
+mkfifo "$IN"
+mkfifo "$OUT"
+
+## Sanity tests.
+test -p "$IN"
+test -p "$OUT"
 
 check_tor() {
    trap error_handler ERR
@@ -240,13 +262,6 @@ while read -r line; do
    ## - 124 if sigterm was sufficient
    ## - 137 if needed to use kill.
 
-   temp_directory="$(mktemp --directory)"
-   IN="$temp_directory/in_${ID}"
-   OUT="$temp_directory/out_${ID}"
-
-   mkfifo "$IN"
-   mkfifo "$OUT"
-
    ## discussion about netcat-traditional vs netcat-openbsd vs tcpcat:
    ## https://www.whonix.org/forum/index.php/topic,444.0.html
    nc 127.0.0.1 9051 < "$OUT" > "$IN" &
@@ -262,6 +277,7 @@ tor_pid_running: $tor_pid_running | \
 tor_authcookie: $tor_authcookie \
 Breaking (2)...\
 " >> "$LOG"
+      kill_nc_pid
       break
    fi
 
@@ -286,31 +302,28 @@ tor_pid_running: $tor_pid_running | \
 tor_authcookie: $tor_authcookie \
 Breaking (3)...\
 " >> "$LOG"
+      kill_nc_pid
       break
    fi
 
    read -r temporary_variable_two cookie _ <<< "$temporary_variable_one"
 
    ## Open Tor control port connection.
-   timeout --kill-after=2s 2s echo "AUTHENTICATE $cookie" > "$OUT" &
+   timeout --kill-after="$kill_after" "$timeout_after" echo "AUTHENTICATE $cookie" > "$OUT" &
    wait "$!"
 
    ## Send command.
-   timeout --kill-after=2s 2s echo "$cleaned_reply" > "$OUT" &
+   timeout --kill-after="$kill_after" "$timeout_after" echo "$cleaned_reply" > "$OUT" &
    wait "$!"
 
    ## Close Tor control port connection.
-   timeout --kill-after=2s 2s echo "QUIT" > "$OUT" &
+   timeout --kill-after="$kill_after" "$timeout_after" echo "QUIT" > "$OUT" &
    wait "$!"
 
    ## Get results.
-   var="$(timeout --kill-after=2s 2s cat "$IN")"
+   var="$(timeout --kill-after="$kill_after" "$timeout_after" cat "$IN")"
 
-   ## Debugging.
-   ## Can be out commented.
-   ps_p_exit_code="0"
-   ps -p "$NC_PID" >/dev/null 2>/dev/null || { ps_p_exit_code="$?" ; true; };
-   echo "$ID debug: ps_p_exit_code: $ps_p_exit_code" >> "$LOG"
+   kill_nc_pid
 
    if [ "$var" = "" ]; then
       write_back "$ID ERROR: var is empty."
