@@ -1,3 +1,9 @@
+control-port-filter (3:0.4-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Tue, 26 Aug 2014 01:19:01 +0000
+
 control-port-filter (3:0.3-1) unstable; urgency=low
 
   * New upstream version.

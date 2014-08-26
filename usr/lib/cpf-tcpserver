@@ -18,16 +18,24 @@ error_handler() {
    if [ "$ID" = "" ] ; then
       ID="No_ID"
    fi
+   cleanup || true
    echo "$ID ERROR: exit_code: $exit_code | bash_command: $bash_command" >> "$LOG"
    exit 1
 }
 
 trap error_handler ERR
 
+cleanup() {
+   if [ -d "$temp_directory" ]; then
+      rm --recursive "$temp_directory"
+   fi
+}
+
 trap_sigint() {
    if [ "$ID" = "" ] ; then
       ID="No_ID"
    fi
+   cleanup
    echo "$ID INFO: SIGINT received. Exiting." >> "$LOG"
    exit 0
 }
@@ -376,5 +384,7 @@ Breaking (3)...\
    write_back "$third_line"
 
 done
+
+cleanup
 
 echo "$ID INFO: End." >> "$LOG"
