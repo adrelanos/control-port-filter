@@ -1,0 +1,360 @@
+commit ab76dabdf54f0e362b9715d93dd7f543176df90b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Feb 4 00:40:35 2015 +0000
+
+    updated makefile generic to version 1.3
+
+commit 7a06c39567afb7397ef29b375f19ef2ef45edc1e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 3 23:58:40 2015 +0000
+
+    Added creation of upstream changelog to debian/rules
+
+commit 841fef8903b4ddb72f775cdda3eb2eac00568f57
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 7 19:33:39 2015 +0000
+
+    bumped compat from 8 to 9
+
+commit cc1491913f40f5ef9f0c8ea251c9d21951f25538
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 5 19:01:11 2014 +0000
+
+    updated generic makefile
+
+commit 3e689f66e40dda9b569ae43d2f4388cef00b0209
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Oct 28 22:35:19 2014 +0000
+
+    makefile: refactoring, avoid using IFS
+
+commit c4aaa7351119b04f3a7a5bd1508911ff4f982fd1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 25 01:58:51 2014 +0000
+
+    makefile:
+    - make debdist; make undebdist
+    - cleanup
+    - refactoring
+
+commit 62fc7d495054d8b8d2eb2b5cad166b24eabbb070
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 23 22:43:02 2014 +0000
+
+    makefile:
+    - new target "make undist", which deletes the upstream tarball
+    - $DISTDIR variable for make (un)dist, which defaults to ".." and can be used to create upstream tarballs in arbitrary locations
+    - refactoring, all function names and global variables now start with "make_" to make the script `source`ing friendly
+    - made `source`able
+
+commit a03ad541a521ca8ee5afaac74c39504ec2caceda
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 13 12:36:52 2014 +0000
+
+    readme
+
+commit cad2d9c9a45484bd3eb56e75bce574a8c726c6dd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 18 16:47:52 2014 +0000
+
+    bumped version number
+
+commit d485d937632c19188973a2cbc3803423edc5f553
+Merge: dc8d8f4 aad037f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 18 16:46:42 2014 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit dc8d8f4c340a716b2a452782e920911bd7dfc607
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 18 16:10:24 2014 +0000
+
+    bumped version number
+
+commit 93af8b6910cdf64a18efd5d8d2c8244e17969528
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 18 16:08:30 2014 +0000
+
+    control-port-filter: use ControlSocket rather than ControlPort; refactoring; comments
+
+commit aad037f21c96b0a8c8fe901e840d9b6e9aeb6a21
+Author: Jason J Ayala P <github@JasonAyala.com>
+Date:   Wed Aug 27 21:21:56 2014 -0500
+
+    removed a comma
+
+commit 639b6c7e04f05950bc388084dfa4abe673a8fe87
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Aug 26 01:19:30 2014 +0000
+
+    control-port-filter: fix, clean up temporary directory
+
+commit 98175b2928aa708c1b232b98dbb5303a6d11d9ba
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Aug 19 18:52:37 2014 +0000
+
+    makefile: added new feature "make deb-chl-bumpup" - Bump upstream version number in debian/changelog.
+
+commit 7bf396a460eafcd1192351149465edcb8e4a4d03
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 17 20:54:23 2014 +0000
+
+    Updated debian/changelog.
+
+commit 1259fafdef8aaeaa520b63ac146a19ec9ca8216f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 17 20:47:26 2014 +0000
+
+    Fixed changelog date.
+
+commit 8b488eebe78e349a1639e859c45c2ad51124bef7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 17 18:03:25 2014 +0000
+
+    bump version number
+
+commit 7936e0c48aa3534496257a4f2c07cef76c160ffd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 16 14:26:12 2014 +0000
+
+    replaced netcat-traditional dependency with netcat-openbsd as per https://www.whonix.org/forum/index.php/topic,444.0.html
+
+commit 191819c75ccefb4f80649e552ec03f9bf5e64a1e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 16 00:33:16 2014 +0000
+
+    - kill NC_PID in unlikely case it is still running
+    - made configurable, kill_after, timeout_after, temp_directory
+    - moved mktemp and mkfifo outside of loop for better performance
+    - sanity tests
+    - refactoring
+
+commit 6ce6d5c7be47c7a331b5254228a4556e44511d26
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 16 00:10:43 2014 +0000
+
+    comment
+
+commit 334c7878235b66015affc4ba8cecf30e3adf95a7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 14 13:35:15 2014 +0000
+
+    Implemented make deb-icup: Combination of make deb-pkg, make deb-pkg-install and make deb-pkg-cleanup.
+
+commit aa2b525ff11c5d45e2178daa9a5d36aa2d48348c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 27 12:42:25 2014 +0000
+
+    packaging
+
+commit 54d0769dcbcdc569f114a9fe86392d68a8213f00
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 27 04:01:10 2014 +0000
+
+    packaging
+
+commit 85bac2b12654f1ea4fec865bc5fa88eb06ab132c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 26 15:26:35 2014 +0000
+
+    packaging
+
+commit 835104d7e0a4cd211b156450cc668fed2387aef9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 26 12:33:36 2014 +0000
+
+    changed "Provides:" field from "controlportfilt" to "control-port-filter" to fix a lintian warning
+
+commit 4e667195bab8f598f799a8d16f7a347cd44ed6a1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 14 02:07:22 2014 +0000
+
+    fix
+
+commit 0036425b746e44e660482c36a1845e3da3f5b563
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 14 02:02:02 2014 +0000
+
+    quotes
+
+commit 6fe9ce68de8d5a72ab5c89a4a9372430ae3c3cb8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 14 01:35:53 2014 +0000
+
+    quotes
+
+commit d026959038b21f6d7db0434cfa7fbf24cafab133
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 12 17:30:42 2014 +0000
+
+    packaging
+
+commit 414efefca39a73eb1daa8248aab22706bcf2e50d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 12 17:11:00 2014 +0000
+
+    packaging
+
+commit 6f6ed4e563eac1709cd93707aaf6cc3533999325
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 12 15:34:16 2014 +0000
+
+    packaging
+
+commit 7c8a999ccce1644a025ab5d1ef3db6945c594c5a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 6 13:23:07 2014 +0000
+
+    use $BASH_SOURCE instead of $0
+
+commit f8176d3951a31c4ddd885549f28b7ae2afb2f6c6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 6 11:35:05 2014 +0000
+
+    sanity test
+
+commit baf5318bd646f2f59a2929c992dcae7df55b10a7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 5 08:09:42 2014 +0000
+
+    Bumped debian revision number to avoid lintian warning "new-package-should-close-itp-bug" so we can use lintian --fail-on-warnings as sanity test.
+
+commit 774abc9bf027a37ce41c8601f814df46fdae4826
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jul 1 17:25:04 2014 +0000
+
+    refactoring
+
+commit fa0ee6210aa60188d749ed874d5e5c3589635583
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jun 28 15:44:36 2014 +0000
+
+    refactoring
+
+commit 4d86885c236f416b23fa6aa62133a256841ce219
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 27 10:41:07 2014 +0000
+
+    implemented listening for signal sigterm
+
+commit 07847446e4c79c1302b419aa95a121c80466aaf5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 27 10:38:58 2014 +0000
+
+    refactoring
+
+commit 79b452113b96c90edebe4cfd6bc5f79e064ff178
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 27 10:37:11 2014 +0000
+
+    fix
+
+commit ee7739b09206e8bebaeec46ff46feeb27ca17748
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 24 15:45:11 2014 +0000
+
+    added debian epoch; added dotglob
+
+commit c799344f19ea9317f8541ee0b391c43e1a19e9c3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jun 23 21:00:13 2014 +0000
+
+    added GETINFO status/circuit-established to whitelist
+
+commit 3829d82230aa99af5451cf9446f599dde18ff902
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 20 14:58:10 2014 +0000
+
+    .
+
+commit aaba9b30174f59ba6f7273c79b49f5b37331ee6a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jun 18 11:05:25 2014 +0000
+
+    Limit maximum accepted command string length to 128 (configurable) as done by Tails (https://mailman.boum.org/pipermail/tails-dev/2014-February/005041.html). Thanks to HulaHoop (https://www.whonix.org/forum/index.php?action=profile;u=87) for suggesting this (https://www.whonix.org/forum/index.php/topic,342.0.html).
+
+commit 67cd174ee52787b2549c1090045bd1ddb465f9e1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 3 18:27:31 2014 +0000
+
+    readme
+
+commit b52cd6f949bcdb7424c711c53aa23fc8d6121c02
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jun 2 14:36:23 2014 +0000
+
+    package description
+
+commit 1190f4bfd2e558d972f3f555c6917d9d9d5f2f95
+Merge: d24cbd5 38ee19e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 1 14:59:38 2014 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit d24cbd5c7d24a6f322adeba1985acce5e81b9007
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 1 14:58:59 2014 +0000
+
+    packaging
+
+commit 38ee19e42bf9ff27e04933aa53be3674f304a8d9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 1 16:55:52 2014 +0200
+
+    Create README.md
+
+commit 12aecc7106cf737adf8b90d7fb213e3317fd8ddc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 31 14:36:56 2014 +0000
+
+    # On branch master
+    nothing to commit (working directory clean)
+
+commit 035cb6337229e5626b1195e3bbc48e933e4e641c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Apr 29 17:59:08 2014 +0000
+
+    refactoring
+
+commit bf24ea402261e01e0b7d12967f1da0b8db72c903
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Apr 27 18:40:53 2014 +0000
+
+    refactoring
+
+commit 1cb64797b9467315867da14199df3d6da3d8cd83
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Apr 27 18:28:38 2014 +0000
+
+    new file: .gitattributes
+
+commit 0b74064fbd828ae351400c04f75c05e0334f25fb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Apr 18 12:56:13 2014 +0000
+
+    .
+
+commit b9d2e56960a856e72c2d4bddc20dcb1073580f70
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 9 00:00:13 2014 +0000
+
+    Made "lie feature", i.e. when getting asked
+    GETINFO net/listeners/socks
+    answer
+    250-net/listeners/socks="127.0.0.1:9150"
+    configurable by CONTROL_PORT_FILTER_LIMIT_GETINFO_NET_LISTENERS_SOCKS variable.
+    Enabled by default.
+
+commit 259476acae6d655aab0fb2de0c33640e1634fbf7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Apr 6 18:26:10 2014 +0000
+
+    .
+
+commit cbe5920966d2515482e3e84af83ec260d431cc37
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Mar 30 20:29:50 2014 +0000
+
+    initial commit
