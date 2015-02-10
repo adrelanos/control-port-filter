@@ -17,6 +17,7 @@ Architecture: all
 Pre-Depends: tor
 Depends: anon-shared-helper-scripts, uuid-runtime, netcat-openbsd,
  ucspi-tcp, logrotate, ${misc:Depends}
+Conflicts: control-port-filter-python
 Description: Whitelisting filter for dangerous Tor control protocol commands
  Filters out Tor control protocol commands that are dangerous for anonymity
  such as GETINFO ADDRESS using a whitelist. Acts as a proxy between the client
