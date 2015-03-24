@@ -1,3 +1,33 @@
+commit aa1fe83c222ce5a83ace919967d617f19c19d86b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Mar 24 17:26:30 2015 +0000
+
+    updated makefile generic to version 1.4
+
+commit 3512c808d09bbc112cc95bf4d4e25389259eef9b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 10 01:16:28 2015 +0000
+
+    debian/control: added "Conflicts: control-port-filter-python" to allow smooth upgrading
+
+commit b2bb8fe9686be5723bdb77f1253c518d3344c4fd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Feb 6 04:27:26 2015 +0000
+
+    maintainer script output
+
+commit 01483444ea09e386fc759aabfda2b37a2af59651
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Feb 6 04:23:17 2015 +0000
+
+    maintainer script output
+
+commit 43df33c07170a27068ca98f3c53471b3087a16a3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Feb 4 00:56:14 2015 +0000
+
+    bumped changelog version
+
 commit 4778b134ff84e515e5932c1aff9ae5864bffd050
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Feb 4 00:44:47 2015 +0000
